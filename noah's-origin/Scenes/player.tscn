@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://g1cqo60ulmic"]
+[gd_scene load_steps=5 format=3 uid="uid://g1cqo60ulmic"]
 
 [ext_resource type="Script" uid="uid://bmydogm4k77ke" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://brdcvinh1vtwy" path="res://Assets/car.png" id="1_v0iea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(26, 51)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cvnsp"]
 radius = 8.0
@@ -15,6 +18,13 @@ script = ExtResource("1_cvnsp")
 texture_filter = 1
 texture = ExtResource("1_v0iea")
 offset = Vector2(0.5, 0)
+
+[node name="AreaCollider" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCollider"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_cvnsp")
+debug_color = Color(1, 0.0044455486, 0.08692538, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cvnsp")
