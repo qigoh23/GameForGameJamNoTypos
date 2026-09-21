@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://g1cqo60ulmic"]
+[gd_scene load_steps=7 format=3 uid="uid://g1cqo60ulmic"]
 
 [ext_resource type="Script" uid="uid://bmydogm4k77ke" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://brdcvinh1vtwy" path="res://Assets/car.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://brdcvinh1vtwy" path="res://Assets/Vehicles/car.png" id="1_v0iea"]
+[ext_resource type="Shader" uid="uid://cegjqkpgrsgqi" path="res://Assets/Shaders/outline.gdshader" id="2_6t5aa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vgqql"]
+shader = ExtResource("2_6t5aa")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 8.0
+shader_parameter/viewport_scale = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(26, 51)
@@ -11,10 +18,15 @@ radius = 8.0
 height = 38.0
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(3, 3)
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_vgqql")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup"]
 texture_filter = 1
 texture = ExtResource("1_v0iea")
 offset = Vector2(0.5, 0)

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5f638155j4ho"
-path="res://.godot/imported/Klux.png-d50291b8ff8bebc500ecba3027683577.ctex"
+path="res://.godot/imported/Tuff.png-5f350db6e92bdaf65b02ad20828c7a04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Accessories/Klux.png"
-dest_files=["res://.godot/imported/Klux.png-d50291b8ff8bebc500ecba3027683577.ctex"]
+source_file="res://Assets/Accessories/Tuff.png"
+dest_files=["res://.godot/imported/Tuff.png-5f350db6e92bdaf65b02ad20828c7a04.ctex"]
 
 [params]
 

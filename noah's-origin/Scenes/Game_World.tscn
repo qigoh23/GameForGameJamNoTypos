@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc3igx2qcgwct"]
+[gd_scene load_steps=5 format=3 uid="uid://cc3igx2qcgwct"]
 
 [ext_resource type="PackedScene" uid="uid://g1cqo60ulmic" path="res://Scenes/player.tscn" id="1_257bv"]
 [ext_resource type="Texture2D" uid="uid://b66vcpwqmvy6m" path="res://icon.svg" id="2_ek3bi"]
+[ext_resource type="Texture2D" uid="uid://e0n0u0nc4ct7" path="res://Assets/Backgrounds/road.png" id="3_tcbdd"]
+[ext_resource type="Texture2D" uid="uid://c88n75nxycd3n" path="res://Assets/Backgrounds/Grass.png" id="4_d2ocx"]
 
 [node name="Game" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(0, 1073)
+repeat_times = 2
+
+[node name="Background" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(0, 535)
+texture = ExtResource("3_tcbdd")
 
 [node name="Player" parent="." instance=ExtResource("1_257bv")]
 position = Vector2(0, -1)
@@ -11,3 +21,12 @@ position = Vector2(0, -1)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(102, -7)
 texture = ExtResource("2_ek3bi")
+
+[node name="BG" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(0.5, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="BG"]
+position = Vector2(-3, 187.99998)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("4_d2ocx")
