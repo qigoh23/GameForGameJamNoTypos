@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtnbdmijkw3ov"]
+
+[ext_resource type="Texture2D" uid="uid://bwubth0x4dnl7" path="res://Assets/Free Guy.png" id="1_62o0x"]
+[ext_resource type="Script" uid="uid://dfvxxl3figo7y" path="res://Scripts/john_guy.gd" id="1_bhsw5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhsw5"]
+size = Vector2(956, 599)
+
+[node name="John Guy" type="Area2D"]
+script = ExtResource("1_bhsw5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.9999695, 0)
+scale = Vector2(1.3993412, 1.5546875)
+texture = ExtResource("1_62o0x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_bhsw5")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
