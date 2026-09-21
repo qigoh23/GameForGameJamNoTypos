@@ -1,0 +1,50 @@
+[gd_scene load_steps=13 format=3 uid="uid://sbuup8j2mhlb"]
+
+[ext_resource type="Script" uid="uid://dfvxxl3figo7y" path="res://Scripts/john_guy.gd" id="1_bhsw5"]
+[ext_resource type="Texture2D" uid="uid://c1smfpsx43idl" path="res://Assets/Accessories/AlphaVOmega.png" id="2_bv557"]
+[ext_resource type="Texture2D" uid="uid://csopi8h6spiy6" path="res://Assets/Victims/Head.png" id="2_v8n32"]
+[ext_resource type="Texture2D" uid="uid://psisrfneb56l" path="res://Assets/Victims/Body.png" id="3_okdjt"]
+[ext_resource type="Texture2D" uid="uid://dnvbqvnjrlh5m" path="res://Assets/Accessories/HalfAngleHalfDevil.png" id="3_vdgnb"]
+[ext_resource type="Texture2D" uid="uid://xjms7qeoyq6a" path="res://Assets/Accessories/TogetherWeAre.png" id="4_f8x86"]
+[ext_resource type="Texture2D" uid="uid://b5f638155j4ho" path="res://Assets/Accessories/Tuff.png" id="4_xepos"]
+[ext_resource type="Texture2D" uid="uid://cwx44flsbjbtx" path="res://Assets/Accessories/TripleT.png" id="5_xl4cy"]
+[ext_resource type="Texture2D" uid="uid://cskpwlpr7o7gx" path="res://Assets/Accessories/TripleTAuraDemon.png" id="6_df2so"]
+[ext_resource type="Texture2D" uid="uid://bcrkm6vq2vlls" path="res://Assets/Accessories/verity.png" id="8_w5k61"]
+[ext_resource type="Texture2D" uid="uid://40hkfhckf0xa" path="res://Assets/Accessories/WinningSmile.png" id="9_vwpbr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhsw5"]
+size = Vector2(23, 29)
+
+[node name="John Guy" type="Area2D"]
+texture_filter = 1
+scale = Vector2(3, 3)
+collision_mask = 2
+script = ExtResource("1_bhsw5")
+AccessoryList = Array[Texture2D]([ExtResource("2_bv557"), ExtResource("3_vdgnb"), ExtResource("4_f8x86"), ExtResource("5_xl4cy"), ExtResource("6_df2so"), ExtResource("4_xepos"), ExtResource("8_w5k61"), ExtResource("9_vwpbr")])
+
+[node name="Head" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_v8n32")
+
+[node name="Body" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("3_okdjt")
+offset = Vector2(0, 10)
+
+[node name="Accessories" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(1, 1.112)
+texture = ExtResource("4_f8x86")
+offset = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.16666667, 0.16666667)
+scale = Vector2(0.33333334, 0.33333334)
+shape = SubResource("RectangleShape2D_bhsw5")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

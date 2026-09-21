@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://psisrfneb56l"
-path="res://.godot/imported/Klan-Recovered.png-d1c1d64bd6e3b685baaf091602583f26.ctex"
+uid="uid://csopi8h6spiy6"
+path="res://.godot/imported/Head.png-aeb67ac2493c7c1131d25ef389e0cfcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Victims/Klan-Recovered.png"
-dest_files=["res://.godot/imported/Klan-Recovered.png-d1c1d64bd6e3b685baaf091602583f26.ctex"]
+source_file="res://Assets/Victims/Head.png"
+dest_files=["res://.godot/imported/Head.png-aeb67ac2493c7c1131d25ef389e0cfcf.ctex"]
 
 [params]
 

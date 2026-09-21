@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc3igx2qcgwct"]
+[gd_scene load_steps=8 format=3 uid="uid://cc3igx2qcgwct"]
 
 [ext_resource type="PackedScene" uid="uid://g1cqo60ulmic" path="res://Scenes/player.tscn" id="1_257bv"]
 [ext_resource type="Texture2D" uid="uid://b66vcpwqmvy6m" path="res://icon.svg" id="2_ek3bi"]
 [ext_resource type="Texture2D" uid="uid://e0n0u0nc4ct7" path="res://Assets/Backgrounds/road.png" id="3_tcbdd"]
 [ext_resource type="Texture2D" uid="uid://c88n75nxycd3n" path="res://Assets/Backgrounds/Grass.png" id="4_d2ocx"]
+[ext_resource type="PackedScene" uid="uid://g6thaq6aqh2r" path="res://Scenes/barriers.tscn" id="5_j28nm"]
+[ext_resource type="PackedScene" uid="uid://sbuup8j2mhlb" path="res://Scenes/john_guy.tscn" id="5_vhrkh"]
+[ext_resource type="PackedScene" uid="uid://cc518ndgxr188" path="res://Scenes/spawner.tscn" id="7_bqs7f"]
 
 [node name="Game" type="Node2D"]
 
@@ -30,3 +33,37 @@ scroll_scale = Vector2(0.5, 0)
 position = Vector2(-3, 187.99998)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("4_d2ocx")
+
+[node name="John Guy" parent="." instance=ExtResource("5_vhrkh")]
+position = Vector2(12, -398)
+
+[node name="BarrierFollow" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 0)
+
+[node name="Barriers" parent="BarrierFollow" instance=ExtResource("5_j28nm")]
+position = Vector2(355.00003, 6.9999995)
+scale = Vector2(2.685, 63.616)
+
+[node name="RayCast2D" type="RayCast2D" parent="BarrierFollow/Barriers"]
+target_position = Vector2(-100, 0)
+
+[node name="Barriers2" parent="BarrierFollow" instance=ExtResource("5_j28nm")]
+position = Vector2(-354.99997, 3.0000002)
+scale = Vector2(2.685, 63.616)
+
+[node name="RayCast2D" type="RayCast2D" parent="BarrierFollow/Barriers2"]
+target_position = Vector2(100, 0)
+
+[node name="Spawner" parent="BarrierFollow" instance=ExtResource("7_bqs7f")]
+
+[node name="Spot1" type="Node2D" parent="BarrierFollow/Spawner"]
+position = Vector2(-260, -437)
+
+[node name="Spot2" type="Node2D" parent="BarrierFollow/Spawner"]
+position = Vector2(-111, -437)
+
+[node name="Spot3" type="Node2D" parent="BarrierFollow/Spawner"]
+position = Vector2(150, -435)
+
+[node name="Spot4" type="Node2D" parent="BarrierFollow/Spawner"]
+position = Vector2(271, -437)

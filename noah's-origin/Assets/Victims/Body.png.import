@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csopi8h6spiy6"
-path="res://.godot/imported/Kool.png-f7b4d86dcaa2f275a451883c6cdfe4b5.ctex"
+uid="uid://psisrfneb56l"
+path="res://.godot/imported/Body.png-21d916b5603c78adb4169ea525bf9caf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Victims/Kool.png"
-dest_files=["res://.godot/imported/Kool.png-f7b4d86dcaa2f275a451883c6cdfe4b5.ctex"]
+source_file="res://Assets/Victims/Body.png"
+dest_files=["res://.godot/imported/Body.png-21d916b5603c78adb4169ea525bf9caf.ctex"]
 
 [params]
 
