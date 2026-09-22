@@ -22,6 +22,8 @@ var slow_multi := 1.0
 var desired_local_velocity := Vector2.ZERO
 var save_vel := Vector2.ZERO
 
+signal point_gain
+
 func _ready() -> void:
 	var shader_mat := canvas_group.material as ShaderMaterial
 	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)

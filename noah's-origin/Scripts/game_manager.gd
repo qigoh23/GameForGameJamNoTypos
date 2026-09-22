@@ -6,11 +6,13 @@ extends Node2D
 @onready var camera_2d: Camera2D = %Camera2D
 @onready var baseline: Node2D = %Baseline
 @onready var death: Area2D = %Death
+@onready var control: Control = %Control
 
 @export var base_game_speed := 500.0
+@export var score := 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	player.point_gain.connect(_on_points)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,3 +23,7 @@ func _process(delta: float) -> void:
 		death.speed = -player.velocity.y
 	else:
 		death.speed = base_game_speed
+
+func _on_points() -> void:
+	score += 500.0
+	control.update_score(score)

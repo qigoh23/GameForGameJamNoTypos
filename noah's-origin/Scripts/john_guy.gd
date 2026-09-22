@@ -23,6 +23,7 @@ func _ready() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if DEAD or not (area.get_parent() is CharacterBody2D):
 		return
+	area.get_parent().point_gain.emit()
 	DEATH(area.get_parent().velocity * 2.0)
 
 func DEATH(vel: Vector2) -> void:
