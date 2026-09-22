@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Noah's origin"
-run/main_scene="uid://g1cqo60ulmic"
+run/main_scene="uid://cc3igx2qcgwct"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

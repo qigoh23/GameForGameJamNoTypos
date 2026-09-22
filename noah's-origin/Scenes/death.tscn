@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://fsp8qh4nffm" path="res://Assets/Backgrounds/Water-Sheet.png" id="2_rsl6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mna5k"]
+size = Vector2(862, 20)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u4dtd"]
 shader = ExtResource("1_mna5k")
