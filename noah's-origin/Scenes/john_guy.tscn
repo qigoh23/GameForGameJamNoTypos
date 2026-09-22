@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://sbuup8j2mhlb"]
+[gd_scene load_steps=16 format=3 uid="uid://8h1btrmoclkh"]
 
-[ext_resource type="Script" uid="uid://dfvxxl3figo7y" path="res://Scripts/john_guy.gd" id="1_bhsw5"]
+[ext_resource type="Script" path="res://Scripts/john_guy.gd" id="1_bhsw5"]
 [ext_resource type="Texture2D" uid="uid://c1smfpsx43idl" path="res://Assets/Accessories/AlphaVOmega.png" id="2_bv557"]
 [ext_resource type="Texture2D" uid="uid://csopi8h6spiy6" path="res://Assets/Victims/Head.png" id="2_v8n32"]
 [ext_resource type="Texture2D" uid="uid://psisrfneb56l" path="res://Assets/Victims/Body.png" id="3_okdjt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bcrkm6vq2vlls" path="res://Assets/Accessories/verity.png" id="8_w5k61"]
 [ext_resource type="Texture2D" uid="uid://40hkfhckf0xa" path="res://Assets/Accessories/WinningSmile.png" id="9_vwpbr"]
 [ext_resource type="Shader" uid="uid://cegjqkpgrsgqi" path="res://Assets/Shaders/outline.gdshader" id="10_vdgnb"]
+[ext_resource type="AudioStream" uid="uid://c0r1nncsvm3la" path="res://Assets/SoundEffects/682371__pnmcarrierailfan__car-crash-elements-sideswipe-01.mp3" id="13_f8x86"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhsw5"]
 size = Vector2(23, 29)
@@ -56,5 +57,9 @@ unique_name_in_owner = true
 scale = Vector2(1, 1.112)
 texture = ExtResource("4_f8x86")
 offset = Vector2(0, -2)
+
+[node name="CrashSFX" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("13_f8x86")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
