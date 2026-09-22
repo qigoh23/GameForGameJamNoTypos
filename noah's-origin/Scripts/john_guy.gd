@@ -4,6 +4,7 @@ extends Area2D
 @onready var head: Sprite2D = %Head
 @onready var body: Sprite2D = %Body
 @onready var accessories: Sprite2D = %Accessories
+@onready var crash_sfx: AudioStreamPlayer2D = %CrashSFX
 
 @export var AccessoryList : Array[Texture2D]
 
@@ -29,6 +30,7 @@ func _on_area_entered(area: Area2D) -> void:
 func DEATH(vel: Vector2) -> void:
 	velocity = vel
 	DEAD = true
+	crash_sfx.play()
 	timer.start()
 
 func _on_timer_timeout() -> void:

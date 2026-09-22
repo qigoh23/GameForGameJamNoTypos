@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cc3igx2qcgwct"]
 
-[ext_resource type="PackedScene" uid="uid://g1cqo60ulmic" path="res://Scenes/player.tscn" id="1_257bv"]
-[ext_resource type="Script" uid="uid://bb1ix7abu20qu" path="res://Scripts/game_manager.gd" id="1_ipext"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_257bv"]
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_ipext"]
 [ext_resource type="Texture2D" uid="uid://b66vcpwqmvy6m" path="res://icon.svg" id="2_ek3bi"]
 [ext_resource type="Texture2D" uid="uid://e0n0u0nc4ct7" path="res://Assets/Backgrounds/road.png" id="3_tcbdd"]
 [ext_resource type="Texture2D" uid="uid://c88n75nxycd3n" path="res://Assets/Backgrounds/Grass.png" id="4_d2ocx"]
