@@ -12,8 +12,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func death(score:int) -> void:
+	visible = true
+	scoreguage(score)
+	restart_button.disabled = false
+	quit_button.disabled = false
 
-func scoreguage() -> void:
+func scoreguage(score:int) -> void:
 	score_label.text = "Score: " + str(score)
 
 func _on_restart_button_pressed() -> void:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bd1oc1a0q3yax"]
+[gd_scene load_steps=2 format=3 uid="uid://g6xw8ts3nr78"]
 
 [ext_resource type="Script" uid="uid://dtppnn3qlt5h4" path="res://Scripts/death_screen.gd" id="1_4pnsc"]
 
 [node name="Control" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,12 +44,14 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
+disabled = true
 text = "Restart"
 
 [node name="QuitButton" type="Button" parent="DeathScreen"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
+disabled = true
 text = "Quit"
 
 [connection signal="pressed" from="DeathScreen/RestartButton" to="." method="_on_restart_button_pressed"]

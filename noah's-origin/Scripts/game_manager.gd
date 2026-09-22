@@ -13,6 +13,9 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.point_gain.connect(_on_points)
+	player.death.connect(func () -> void:
+		control.death(score)
+	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

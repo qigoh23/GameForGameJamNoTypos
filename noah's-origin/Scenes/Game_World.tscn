@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cc3igx2qcgwct"]
+[gd_scene load_steps=14 format=3 uid="uid://cc3igx2qcgwct"]
 
 [ext_resource type="PackedScene" uid="uid://g1cqo60ulmic" path="res://Scenes/player.tscn" id="1_257bv"]
 [ext_resource type="Script" uid="uid://bb1ix7abu20qu" path="res://Scripts/game_manager.gd" id="1_ipext"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://sbuup8j2mhlb" path="res://Scenes/john_guy.tscn" id="5_vhrkh"]
 [ext_resource type="PackedScene" uid="uid://cc518ndgxr188" path="res://Scenes/spawner.tscn" id="7_bqs7f"]
 [ext_resource type="PackedScene" uid="uid://duagl3xnb4nwl" path="res://Scenes/death.tscn" id="9_v454l"]
+[ext_resource type="PackedScene" uid="uid://g6xw8ts3nr78" path="res://Scenes/DeathScreen.tscn" id="10_aqk2n"]
 [ext_resource type="Script" uid="uid://cnp1670bj73j3" path="res://Scenes/UI_control.gd" id="10_uvlhy"]
 [ext_resource type="Texture2D" uid="uid://bywuetjxg3dj8" path="res://Assets/Reactions/drink_anim.png" id="10_wkib5"]
 [ext_resource type="Texture2D" uid="uid://btbq55c6raqxt" path="res://Assets/Reactions/idle_anim.png" id="11_2illj"]
@@ -26,7 +27,7 @@ texture = ExtResource("3_tcbdd")
 
 [node name="Player" parent="." instance=ExtResource("1_257bv")]
 unique_name_in_owner = true
-position = Vector2(0, -1)
+position = Vector2(0, -269.205)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(102, -7)
@@ -90,6 +91,9 @@ position = Vector2(0, -16)
 zoom = Vector2(0.5, 0.5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control2" parent="CanvasLayer" instance=ExtResource("10_aqk2n")]
+unique_name_in_owner = true
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true

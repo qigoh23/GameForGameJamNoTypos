@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @onready var canvas_group: CanvasGroup = %CanvasGroup
 @onready var slow_timer: Timer = %SlowTimer
+@onready var area_collider: Area2D = %AreaCollider
 
 @export var turn_velocity := 0.0
 
@@ -23,9 +24,11 @@ var desired_local_velocity := Vector2.ZERO
 var save_vel := Vector2.ZERO
 
 signal point_gain
+signal death
 
 func _ready() -> void:
 	var shader_mat := canvas_group.material as ShaderMaterial
+	area_collider.area_entered.connect(_on_area_hit_death)
 	var tween := create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_method(
 		func (val:float) -> void:
@@ -36,6 +39,10 @@ func _ready() -> void:
 			shader_mat.set_shader_parameter("line_thickness", val)
 			,8.0,4.0,0.5)
 	tween.set_loops()
+	
+
+func _on_area_hit_death(_area:Area2D) -> void:
+	death.emit()
 
 func _physics_process(delta: float) -> void:
 	var accel := Input.is_action_pressed("accelerate")
