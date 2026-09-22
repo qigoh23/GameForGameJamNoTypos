@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @onready var canvas_group: CanvasGroup = %CanvasGroup
+@onready var slow_timer: Timer = %SlowTimer
 
 @export var turn_velocity := 0.0
 
@@ -15,7 +16,8 @@ const MAX_HORIZONTAL_VEL := 800.0
 const HORIZONTAL_ACCEL := 1500.0
 
 var MAX_SPEED := 1000.0
-
+var speed_multi := 1.0
+var slow_multi := 1.0
 
 var desired_local_velocity := Vector2.ZERO
 var save_vel := Vector2.ZERO
@@ -36,7 +38,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var accel := Input.is_action_pressed("accelerate")
 	var brake := Input.is_action_pressed("brake")
-	desired_local_velocity = Vector2(0.0,-MAX_SPEED if (accel and (not brake)) else 0.0 )
+	desired_local_velocity = Vector2(0.0,(-MAX_SPEED * speed_multi * slow_multi) if (accel and (not brake)) else 0.0 )
 	var turn_direction := Input.get_axis("turn_left","turn_right")
 	turn_velocity = clampf( move_toward(turn_velocity, MAX_TURN_SPEED * turn_direction, MAX_TURN_ACCEL * delta), deg_to_rad(-MAX_TURN_SPEED), deg_to_rad(MAX_TURN_SPEED))
 	if (absf(turn_direction) < 0.5):
@@ -52,5 +54,22 @@ func _physics_process(delta: float) -> void:
 			turning_tween = null
 		save_vel.x = turn_direction * MAX_HORIZONTAL_VEL
 	velocity = velocity.move_toward(desired_local_velocity.rotated(rotation), ((BRAKE_ACCEL if brake else ACCELERATION) * delta)) 
-	velocity.x = move_toward(velocity.x, save_vel.x, HORIZONTAL_ACCEL * delta)
+	velocity.x = move_toward(velocity.x, save_vel.x * slow_multi, HORIZONTAL_ACCEL * delta)
 	move_and_slide()
+
+func slow_debuff() -> void:
+	velocity = Vector2.ZERO
+	if slow_timer.time_left > 0.0:
+		print("ran")
+		slow_timer.stop()
+		slow_multi = 0.2
+		slow_timer.start(slow_timer.wait_time)
+	else:
+		print("ran1")
+		slow_multi = 0.2
+		slow_timer.start()
+		slow_timer.timeout.connect(func () -> void: 
+			slow_multi = 1.0
+			for con:Dictionary in slow_timer.timeout.get_connections():
+				slow_timer.timeout.disconnect(con["callable"])
+		)

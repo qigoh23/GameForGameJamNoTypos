@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc518ndgxr188"]
+[gd_scene load_steps=4 format=3 uid="uid://cc518ndgxr188"]
 
 [ext_resource type="Script" uid="uid://bagrrjtwdfwqi" path="res://Scripts/spawner.gd" id="1_2bop2"]
 [ext_resource type="PackedScene" uid="uid://sbuup8j2mhlb" path="res://Scenes/john_guy.tscn" id="2_mdv8j"]
+[ext_resource type="PackedScene" uid="uid://cu7yu7oygey18" path="res://Scenes/obstacle.tscn" id="3_xhbpr"]
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_2bop2")
 john_guy_scns = ExtResource("2_mdv8j")
+obstacle_scns = ExtResource("3_xhbpr")

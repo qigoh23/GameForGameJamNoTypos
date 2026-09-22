@@ -1,9 +1,7 @@
-extends Area2D
+class_name Obstacle extends Area2D
 
 @onready var timer: Timer = %Timer
-@onready var head: Sprite2D = %Head
 @onready var body: Sprite2D = %Body
-@onready var accessories: Sprite2D = %Accessories
 
 @export var AccessoryList : Array[Texture2D]
 
@@ -14,8 +12,6 @@ var spin_speed := 20.0
 func _ready() -> void:
 	
 	area_entered.connect(_on_area_entered)
-	body.modulate = Color(randf() * 255.0, randf() * 255.0,randf() * 255.0)
-	accessories.texture = AccessoryList.pick_random()
 	get_tree().create_timer(10.0).timeout.connect(func () -> void:
 		queue_free()
 	)
@@ -23,6 +19,7 @@ func _ready() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if DEAD or not (area.get_parent() is CharacterBody2D):
 		return
+	area.get_parent().slow_debuff()
 	DEATH(area.get_parent().velocity * 2.0)
 
 func DEATH(vel: Vector2) -> void:

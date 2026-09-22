@@ -1,16 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc3igx2qcgwct"]
+[gd_scene load_steps=13 format=3 uid="uid://cc3igx2qcgwct"]
 
 [ext_resource type="PackedScene" uid="uid://g1cqo60ulmic" path="res://Scenes/player.tscn" id="1_257bv"]
+[ext_resource type="Script" uid="uid://bb1ix7abu20qu" path="res://Scripts/game_manager.gd" id="1_ipext"]
 [ext_resource type="Texture2D" uid="uid://b66vcpwqmvy6m" path="res://icon.svg" id="2_ek3bi"]
 [ext_resource type="Texture2D" uid="uid://e0n0u0nc4ct7" path="res://Assets/Backgrounds/road.png" id="3_tcbdd"]
 [ext_resource type="Texture2D" uid="uid://c88n75nxycd3n" path="res://Assets/Backgrounds/Grass.png" id="4_d2ocx"]
 [ext_resource type="PackedScene" uid="uid://g6thaq6aqh2r" path="res://Scenes/barriers.tscn" id="5_j28nm"]
 [ext_resource type="PackedScene" uid="uid://sbuup8j2mhlb" path="res://Scenes/john_guy.tscn" id="5_vhrkh"]
 [ext_resource type="PackedScene" uid="uid://cc518ndgxr188" path="res://Scenes/spawner.tscn" id="7_bqs7f"]
+[ext_resource type="PackedScene" uid="uid://duagl3xnb4nwl" path="res://Scenes/death.tscn" id="9_v454l"]
+[ext_resource type="Script" uid="uid://cnp1670bj73j3" path="res://Scenes/UI_control.gd" id="10_uvlhy"]
+[ext_resource type="Texture2D" uid="uid://bywuetjxg3dj8" path="res://Assets/Reactions/drink_anim.png" id="10_wkib5"]
+[ext_resource type="Texture2D" uid="uid://btbq55c6raqxt" path="res://Assets/Reactions/idle_anim.png" id="11_2illj"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_ipext")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+visible = false
 repeat_size = Vector2(0, 1073)
 repeat_times = 2
 
@@ -19,6 +26,7 @@ position = Vector2(0, 535)
 texture = ExtResource("3_tcbdd")
 
 [node name="Player" parent="." instance=ExtResource("1_257bv")]
+unique_name_in_owner = true
 position = Vector2(0, -1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -26,6 +34,7 @@ position = Vector2(102, -7)
 texture = ExtResource("2_ek3bi")
 
 [node name="BG" type="Parallax2D" parent="."]
+visible = false
 z_index = -1
 scroll_scale = Vector2(0.5, 0)
 
@@ -34,22 +43,20 @@ position = Vector2(-3, 187.99998)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("4_d2ocx")
 
-[node name="John Guy" parent="." instance=ExtResource("5_vhrkh")]
-position = Vector2(12, -398)
-
 [node name="BarrierFollow" type="Parallax2D" parent="."]
+visible = false
 scroll_scale = Vector2(1, 0)
 
 [node name="Barriers" parent="BarrierFollow" instance=ExtResource("5_j28nm")]
 position = Vector2(355.00003, 6.9999995)
-scale = Vector2(2.685, 63.616)
+scale = Vector2(2.685, 100.495995)
 
 [node name="RayCast2D" type="RayCast2D" parent="BarrierFollow/Barriers"]
 target_position = Vector2(-100, 0)
 
 [node name="Barriers2" parent="BarrierFollow" instance=ExtResource("5_j28nm")]
 position = Vector2(-354.99997, 3.0000002)
-scale = Vector2(2.685, 63.616)
+scale = Vector2(2.685, 100.495995)
 
 [node name="RayCast2D" type="RayCast2D" parent="BarrierFollow/Barriers2"]
 target_position = Vector2(100, 0)
@@ -67,3 +74,55 @@ position = Vector2(150, -435)
 
 [node name="Spot4" type="Node2D" parent="BarrierFollow/Spawner"]
 position = Vector2(271, -437)
+
+[node name="John Guy" parent="." instance=ExtResource("5_vhrkh")]
+position = Vector2(12, -398)
+
+[node name="Death" parent="." instance=ExtResource("9_v454l")]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, 278)
+scale = Vector2(3, 3)
+
+[node name="Baseline" type="Node2D" parent="Death"]
+unique_name_in_owner = true
+position = Vector2(0, 16)
+
+[node name="Camera2D" type="Camera2D" parent="Death/Baseline"]
+unique_name_in_owner = true
+position = Vector2(0, -16)
+zoom = Vector2(0.5, 0.5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_uvlhy")
+reaction_textures = Dictionary[String, Texture2D]({
+"Drink": ExtResource("10_wkib5"),
+"Idle": ExtResource("11_2illj")
+})
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.79200006
+anchor_top = 0.628
+anchor_right = 1.0
+anchor_bottom = 0.998
+offset_left = -0.3840332
+offset_top = 0.055999756
+offset_right = 360.0
+offset_bottom = 360.29596
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("11_2illj")
+expand_mode = 1
+stretch_mode = 6

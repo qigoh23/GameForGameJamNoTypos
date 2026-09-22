@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://sbuup8j2mhlb"]
+[gd_scene load_steps=15 format=3 uid="uid://sbuup8j2mhlb"]
 
 [ext_resource type="Script" uid="uid://dfvxxl3figo7y" path="res://Scripts/john_guy.gd" id="1_bhsw5"]
 [ext_resource type="Texture2D" uid="uid://c1smfpsx43idl" path="res://Assets/Accessories/AlphaVOmega.png" id="2_bv557"]
@@ -11,9 +11,16 @@
 [ext_resource type="Texture2D" uid="uid://cskpwlpr7o7gx" path="res://Assets/Accessories/TripleTAuraDemon.png" id="6_df2so"]
 [ext_resource type="Texture2D" uid="uid://bcrkm6vq2vlls" path="res://Assets/Accessories/verity.png" id="8_w5k61"]
 [ext_resource type="Texture2D" uid="uid://40hkfhckf0xa" path="res://Assets/Accessories/WinningSmile.png" id="9_vwpbr"]
+[ext_resource type="Shader" uid="uid://cegjqkpgrsgqi" path="res://Assets/Shaders/outline.gdshader" id="10_vdgnb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhsw5"]
 size = Vector2(23, 29)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f8x86"]
+shader = ExtResource("10_vdgnb")
+shader_parameter/line_color = Color(0, 1, 0, 1)
+shader_parameter/line_thickness = 8.0
+shader_parameter/viewport_scale = Vector2(1, 1)
 
 [node name="John Guy" type="Area2D"]
 texture_filter = 1
@@ -21,21 +28,6 @@ scale = Vector2(3, 3)
 collision_mask = 2
 script = ExtResource("1_bhsw5")
 AccessoryList = Array[Texture2D]([ExtResource("2_bv557"), ExtResource("3_vdgnb"), ExtResource("4_f8x86"), ExtResource("5_xl4cy"), ExtResource("6_df2so"), ExtResource("4_xepos"), ExtResource("8_w5k61"), ExtResource("9_vwpbr")])
-
-[node name="Head" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-texture = ExtResource("2_v8n32")
-
-[node name="Body" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-texture = ExtResource("3_okdjt")
-offset = Vector2(0, 10)
-
-[node name="Accessories" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-scale = Vector2(1, 1.112)
-texture = ExtResource("4_f8x86")
-offset = Vector2(0, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.16666667, 0.16666667)
@@ -46,5 +38,23 @@ shape = SubResource("RectangleShape2D_bhsw5")
 unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_f8x86")
+
+[node name="Head" type="Sprite2D" parent="CanvasGroup"]
+unique_name_in_owner = true
+texture = ExtResource("2_v8n32")
+
+[node name="Body" type="Sprite2D" parent="CanvasGroup"]
+unique_name_in_owner = true
+texture = ExtResource("3_okdjt")
+offset = Vector2(0, 10)
+
+[node name="Accessories" type="Sprite2D" parent="CanvasGroup"]
+unique_name_in_owner = true
+scale = Vector2(1, 1.112)
+texture = ExtResource("4_f8x86")
+offset = Vector2(0, -2)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

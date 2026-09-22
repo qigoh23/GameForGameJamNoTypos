@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cu7yu7oygey18"]
+
+[ext_resource type="Script" uid="uid://ckava0qbcfij" path="res://Scripts/obstacle.gd" id="1_p763d"]
+[ext_resource type="Texture2D" uid="uid://dirrrxj22v7t2" path="res://Assets/RoadItems/SimpleBarricade.png" id="3_rvx1i"]
+[ext_resource type="Shader" uid="uid://cegjqkpgrsgqi" path="res://Assets/Shaders/outline.gdshader" id="10_yin54"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhsw5"]
+size = Vector2(211, 93)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a6yce"]
+shader = ExtResource("10_yin54")
+shader_parameter/line_color = Color(0.88702255, 0, 0.15886101, 1)
+shader_parameter/line_thickness = 8.0
+shader_parameter/viewport_scale = Vector2(1, 1)
+
+[node name="John Guy" type="Area2D"]
+texture_filter = 1
+scale = Vector2(3, 3)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_p763d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.16666667, 0.16666667)
+scale = Vector2(0.33333334, 0.33333334)
+shape = SubResource("RectangleShape2D_bhsw5")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_a6yce")
+
+[node name="Body" type="Sprite2D" parent="CanvasGroup"]
+unique_name_in_owner = true
+texture = ExtResource("3_rvx1i")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
