@@ -22,8 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	camera_2d.global_position.y = baseline.global_position.y -(get_viewport_rect().size.y/(2.0 * camera_2d.zoom.y) )
 	if absf(baseline.global_position.y - player.global_position.y) > (get_viewport_rect().size.y/(2.0 * camera_2d.zoom.y)):
-		print(true)
-		death.speed = -player.velocity.y
+		death.speed = -(player.velocity.y -10.0)
 	else:
 		death.speed = base_game_speed
 
